@@ -231,31 +231,84 @@ locationBtn.addEventListener("click", () => {
     );
 });
 
-/* ---------------- VOICE SEARCH ---------------- */
 
-if ("webkitSpeechRecognition" in window) {
 
-    const recognition =
-        new webkitSpeechRecognition();
 
-    recognition.lang = "en-US";
+let recognition;
+let isListening = false;
 
-    voiceBtn.addEventListener("click", () => {
+if ('webkitSpeechRecognition' in window) {
 
-        recognition.start();
+    recognition = new webkitSpeechRecognition();
 
-    });
+    recognition.lang = 'en-US';
+    recognition.continuous = false;
+    recognition.interimResults = false;
+
+    recognition.onstart = () => {
+
+        isListening = true;
+
+        voiceBtn.innerHTML =
+            '<i class="fa-solid fa-microphone-lines"></i>';
+
+    };
+
+    recognition.onend = () => {
+
+        isListening = false;
+
+        voiceBtn.innerHTML =
+            '<i class="fa-solid fa-microphone"></i>';
+
+    };
+
+    recognition.onerror = (event) => {
+
+        console.log("Speech Error:", event.error);
+
+        isListening = false;
+
+        voiceBtn.innerHTML =
+            '<i class="fa-solid fa-microphone"></i>';
+
+    };
 
     recognition.onresult = (event) => {
 
         const cityName =
             event.results[0][0].transcript;
 
-        cityInput.value =
-            cityName;
+        cityInput.value = cityName;
 
         getWeather(cityName);
+
     };
+
+    voiceBtn.addEventListener("click", () => {
+
+        if (isListening) return;
+
+        try {
+
+            recognition.start();
+
+        } catch (error) {
+
+            console.log(error);
+
+        }
+
+    });
+
+} else {
+
+    voiceBtn.addEventListener("click", () => {
+
+        alert("Voice Search is not supported in this browser.");
+
+    });
+
 }
 
 
