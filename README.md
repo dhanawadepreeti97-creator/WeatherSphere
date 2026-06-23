@@ -1,65 +1,38 @@
-# 🌦️ WeatherSphere Pro
+# 🌦️ WeatherSphere 
 
-A modern and responsive weather dashboard built using **HTML, CSS, and JavaScript**, powered by the **OpenWeather API**.
+WeatherSphere is a responsive weather application built using HTML, CSS, and JavaScript. It provides real-time weather information for cities around the world using the OpenWeather API.
 
-## 🚀 Live Demo
+## Features
 
-🔗 Add your GitHub Pages link here
+* Search weather by city name
+* Current location weather using Geolocation API
+* 5-day weather forecast
+* Dark and Light mode
+* Voice search
+* Live clock
+* Dynamic weather backgrounds
+* Country flag display
+* Responsive design
+* Local storage support
 
-## 📌 Features
-
-* 🌍 Country Flag Display
-* 🎤 Voice Search
-* ⏰ Live Clock
-* 🌈 Dynamic Weather Backgrounds
-* 📍 Current Location Weather
-* 📅 5-Day Weather Forecast
-* 🌙 Dark / Light Mode
-* 💾 Local Storage Support
-* 📱 Fully Responsive Design
-* ✨ Glassmorphism UI
-
-## 🛠️ Technologies Used
+## Technologies Used
 
 * HTML5
 * CSS3
-* JavaScript (ES6)
+* JavaScript
 * OpenWeather API
 * Geolocation API
 * Web Speech API
-* Local Storage
 
-## 📷 Screenshots
+## API Setup
 
-Add screenshots of your application here.
-
-## ⚙️ Installation
-
-1. Clone the repository
-
-```bash
-git clone https://github.com/yourusername/WeatherSphere-Pro.git
-```
-
-2. Open the project folder
-
-```bash
-cd WeatherSphere-Pro
-```
-
-3. Open `index.html` in your browser.
-
-## 🔑 API Setup
-
-1. Create a free account on OpenWeather.
-2. Generate an API key.
-3. Replace the API key in `script.js`:
+Generate an API key from OpenWeather and replace the API key in `script.js`:
 
 ```javascript
 const API_KEY = "YOUR_API_KEY";
 ```
 
-## 📂 Project Structure
+## Project Structure
 
 ```text
 WeatherSphere-Pro/
@@ -67,27 +40,12 @@ WeatherSphere-Pro/
 ├── index.html
 ├── style.css
 ├── script.js
-├── README.md
-└── assets/
+└── README.md
 ```
 
-## 🎯 Learning Outcomes
+## Author
 
-Through this project, I practiced:
+Preeti Dharmaraj Dhanawade
 
-* API Integration
-* Fetch API & Async/Await
-* DOM Manipulation
-* Responsive Web Design
-* Local Storage
-* Geolocation API
-* Voice Recognition
-* UI/UX Design
-
-## 👩‍💻 Author
-
-**Preeti Dharmaraj Dhanawade**
-
-Diploma in Information Technology | Full Stack Web Development Intern
-
-GitHub: https://github.com/yourusername
+Diploma in Information Technology
+Full Stack Web Development Intern
