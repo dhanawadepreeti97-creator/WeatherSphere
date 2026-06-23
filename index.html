@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherSphere Pro</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="top-bar">
+
+            <div>
+                <h1>🌦️ WeatherSphere </h1>
+                <p id="clock"></p>
+            </div>
+
+            <button id="themeBtn">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+
+        </div>
+
+        <div class="search-box">
+
+            <input type="text"
+                id="cityInput"
+                placeholder="Search any city...">
+
+            <button id="searchBtn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+            <button id="voiceBtn">
+                <i class="fa-solid fa-microphone"></i>
+            </button>
+
+            <button id="locationBtn">
+                <i class="fa-solid fa-location-dot"></i>
+            </button>
+
+        </div>
+
+        <div id="loader" class="loader hidden"></div>
+
+        <div class="weather-card">
+
+            <div class="location-info">
+
+                <h2 id="city">Mumbai</h2>
+
+                <img id="flag"
+                    src=""
+                    alt="Country Flag">
+
+            </div>
+
+            <img id="icon"
+                src=""
+                alt="Weather Icon">
+
+            <h1 id="temp">--°C</h1>
+
+            <p id="condition">Loading...</p>
+
+            <div class="details">
+
+                <div>
+                    💧
+                    <p id="humidity">--%</p>
+                    <span>Humidity</span>
+                </div>
+
+                <div>
+                    🌬️
+                    <p id="wind">-- km/h</p>
+                    <span>Wind</span>
+                </div>
+
+                <div>
+                    🤗
+                    <p id="feelsLike">--°C</p>
+                    <span>Feels Like</span>
+                </div>
+
+            </div>
+
+            <div class="extra">
+
+                <p>🌅 Sunrise:
+                    <span id="sunrise"></span>
+                </p>
+
+                <p>🌇 Sunset:
+                    <span id="sunset"></span>
+                </p>
+
+                <p>📈 Pressure:
+                    <span id="pressure"></span>
+                </p>
+
+            </div>
+
+        </div>
+
+        <h2 class="forecast-title">
+            📅 5-Day Forecast
+        </h2>
+
+        <div id="forecast"
+            class="forecast">
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
