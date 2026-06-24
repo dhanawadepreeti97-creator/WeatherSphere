@@ -71,7 +71,7 @@ function displayWeather(data) {
         `${data.main.humidity}%`;
 
     wind.textContent =
-        `${data.wind.speed} km/h`;
+`   ${Math.round(data.wind.speed * 3.6)} km/h`;
 
     feelsLike.textContent =
         `${Math.round(data.main.feels_like)}°C`;
@@ -232,64 +232,20 @@ locationBtn.addEventListener("click", () => {
 });
 
 
-
-
-let recognition;
-let isListening = false;
-
 if ('webkitSpeechRecognition' in window) {
 
-    recognition = new webkitSpeechRecognition();
+    const recognition = new webkitSpeechRecognition();
 
-    recognition.lang = 'en-US';
+    recognition.lang = "en-US";
     recognition.continuous = false;
     recognition.interimResults = false;
 
-    recognition.onstart = () => {
-
-        isListening = true;
-
-        voiceBtn.innerHTML =
-            '<i class="fa-solid fa-microphone-lines"></i>';
-
-    };
-
-    recognition.onend = () => {
-
-        isListening = false;
-
-        voiceBtn.innerHTML =
-            '<i class="fa-solid fa-microphone"></i>';
-
-    };
-
-    recognition.onerror = (event) => {
-
-        console.log("Speech Error:", event.error);
-
-        isListening = false;
-
-        voiceBtn.innerHTML =
-            '<i class="fa-solid fa-microphone"></i>';
-
-    };
-
-    recognition.onresult = (event) => {
-
-        const cityName =
-            event.results[0][0].transcript;
-
-        cityInput.value = cityName;
-
-        getWeather(cityName);
-
-    };
-
     voiceBtn.addEventListener("click", () => {
 
-        if (isListening) return;
-
         try {
+
+            voiceBtn.innerHTML =
+                '<i class="fa-solid fa-microphone-lines"></i>';
 
             recognition.start();
 
@@ -301,13 +257,44 @@ if ('webkitSpeechRecognition' in window) {
 
     });
 
+    recognition.onresult = (event) => {
+
+        const cityName =
+            event.results[0][0].transcript;
+
+        console.log("Heard:", cityName);
+
+        cityInput.value = cityName;
+
+        getWeather(cityName);
+
+    };
+
+    recognition.onend = () => {
+
+        voiceBtn.innerHTML =
+            '<i class="fa-solid fa-microphone"></i>';
+
+    };
+
+    recognition.onerror = (event) => {
+
+        console.log("Speech Error:", event.error);
+
+        voiceBtn.innerHTML =
+            '<i class="fa-solid fa-microphone"></i>';
+
+        if (event.error === "no-speech") {
+
+            alert("No speech detected. Click the microphone and speak immediately.");
+
+        }
+
+    };
+
 } else {
 
-    voiceBtn.addEventListener("click", () => {
-
-        alert("Voice Search is not supported in this browser.");
-
-    });
+    voiceBtn.style.display = "none";
 
 }
 
