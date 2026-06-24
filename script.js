@@ -232,20 +232,22 @@ locationBtn.addEventListener("click", () => {
 });
 
 
+
 if ('webkitSpeechRecognition' in window) {
 
     const recognition = new webkitSpeechRecognition();
 
-    recognition.lang = "en-US";
+    recognition.lang = "en-IN";
     recognition.continuous = false;
     recognition.interimResults = false;
 
+    let listening = false;
+
     voiceBtn.addEventListener("click", () => {
 
-        try {
+        if (listening) return;
 
-            voiceBtn.innerHTML =
-                '<i class="fa-solid fa-microphone-lines"></i>';
+        try {
 
             recognition.start();
 
@@ -257,12 +259,28 @@ if ('webkitSpeechRecognition' in window) {
 
     });
 
+    recognition.onstart = () => {
+
+        listening = true;
+
+        voiceBtn.innerHTML =
+        '<i class="fa-solid fa-microphone-lines"></i>';
+
+    };
+
+    recognition.onend = () => {
+
+        listening = false;
+
+        voiceBtn.innerHTML =
+        '<i class="fa-solid fa-microphone"></i>';
+
+    };
+
     recognition.onresult = (event) => {
 
         const cityName =
-            event.results[0][0].transcript;
-
-        console.log("Heard:", cityName);
+        event.results[0][0].transcript;
 
         cityInput.value = cityName;
 
@@ -270,25 +288,17 @@ if ('webkitSpeechRecognition' in window) {
 
     };
 
-    recognition.onend = () => {
-
-        voiceBtn.innerHTML =
-            '<i class="fa-solid fa-microphone"></i>';
-
-    };
-
     recognition.onerror = (event) => {
 
-        console.log("Speech Error:", event.error);
+        listening = false;
+
+        console.log(
+            "Speech Error:",
+            event.error
+        );
 
         voiceBtn.innerHTML =
-            '<i class="fa-solid fa-microphone"></i>';
-
-        if (event.error === "no-speech") {
-
-            alert("No speech detected. Click the microphone and speak immediately.");
-
-        }
+        '<i class="fa-solid fa-microphone"></i>';
 
     };
 
